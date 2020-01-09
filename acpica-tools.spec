@@ -8,39 +8,11 @@ URL:            https://www.acpica.org/
 
 Source0:        https://acpica.org/sites/acpica/files/acpica-unix2-%{version}.tar.gz
 Source1:        https://acpica.org/sites/acpica/files/acpitests-unix-%{version}.tar.gz
-Source2:        iasl.1
-Source3:        acpibin.1
-Source4:        acpidump.1
-Source5:        acpiexec.1
-Source6:        acpihelp.1
-Source7:        acpinames.1
-Source8:        acpisrc.1
-Source9:        acpixtract.1
-Source10:       acpiexamples.1
-Source11:       badcode.asl.result
-Source12:       grammar.asl.result
-Source13:       converterSample.asl.result
-Source14:       run-misc-tests.sh
-Source15:       COPYING
+Source2:        COPYING
 
-Patch0001:      big-endian.patch
-Patch0002:      unaligned.patch
-Patch0003:      OPT_LDFLAGS.patch
-Patch0004:      int-format.patch
-Patch0005:      f23-harden.patch
-Patch0006:      template.patch
-Patch0007:      ppc64le.patch
-Patch0008:      arm7hl.patch
-Patch0009:      big-endian-v2.patch
-Patch0010:      simple-64bit.patch
-Patch0011:      mips-be-fix.patch
-Patch0012:      cve-2017-13693.patch
-Patch0013:      cve-2017-13694.patch
-Patch0014:      cve-2017-13695.patch
-Patch0015:      str-trunc-warn.patch
-Patch0016:      ptr-cast.patch
-Patch0017:      aslcodegen.patch
-Patch0018:      facp.patch
+Patch0001:      cve-2017-13693.patch
+Patch0002:      cve-2017-13694.patch
+Patch0003:      cve-2017-13695.patch
 
 BuildRequires:  bison patchutils flex gcc
 Provides:       acpixtract >= 20120913-7 iasl = %{version}-%{release} acpidump >= 20100513-5
@@ -59,32 +31,12 @@ operating system software. The primary purpose of the ACPI Component Architectur
 ACPI implementations for operating system vendors (OSVs) by providing major portions of an ACPI
 implementation in OS-independent ACPI modules that can be easily integrated into any OS.
 
-%package help
-Summary:        Help documantation of acpica-tools package
-
-%description help
-Help documantation of acpica-tools package.
-
 %prep
 %autosetup -n acpica-unix2-%{version} -p1
 gzip -dc %{SOURCE1} | tar -x --strip-components=1 -f -
 
-install -p %{SOURCE2} iasl.1
-install -p %{SOURCE3} acpibin.1
-install -p %{SOURCE4} acpidump.1
-install -p %{SOURCE5} acpiexec.1
-install -p %{SOURCE6} acpihelp.1
-install -p %{SOURCE7} acpinames.1
-install -p %{SOURCE8} acpisrc.1
-install -p %{SOURCE9} acpixtract.1
-install -p %{SOURCE10} acpiexamples.1
-install -p %{SOURCE11} badcode.asl.result
-install -p %{SOURCE12} grammar.asl.result
-install -p %{SOURCE13} converterSample.asl.result
-install -p %{SOURCE14} tests/run-misc-tests.sh
-install -p %{SOURCE15} COPYING
+install -p %{SOURCE2} COPYING
 
-chmod a+x tests/run-misc-tests.sh
 chmod a-x changes.txt
 chmod a-x source/compiler/new_table.txt
 
@@ -106,9 +58,6 @@ export OPT_LDFLAGS="%{__global_ldflags}"
 %install
 install -d %{buildroot}%{_bindir}
 install -pD generate/unix/bin*/* %{buildroot}%{_bindir}/
-
-install -d %{buildroot}%{_mandir}/man1
-install -pDm 0644 *.1 %{buildroot}%{_mandir}/man1/
 
 install -d %{buildroot}%{_docdir}/acpica-tools/examples
 install -pDm 0644 source/tools/examples/* %{buildroot}%{_docdir}/acpica-tools/examples/
@@ -149,9 +98,6 @@ fi
 %files
 %doc changes.txt source/compiler/new_table.txt COPYING
 %{_bindir}/*
-
-%files help
-%{_mandir}/*
 %{_docdir}/*
 
 %changelog

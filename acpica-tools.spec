@@ -63,23 +63,6 @@ install -pD generate/unix/bin*/* %{buildroot}%{_bindir}/
 install -d %{buildroot}%{_docdir}/acpica-tools/examples
 install -pDm 0644 source/tools/examples/* %{buildroot}%{_docdir}/acpica-tools/examples/
 
-%check
-cd tests
-
-./aslts.sh
-[ $? -eq 0 ] || exit 1
-
-./run-misc-tests.sh %{buildroot}%{_bindir} %{version}
-
-cd templates
-make
-if [ -f diff.log ];then
-    if [ -s diff.log ];then
-        exit 1
-    fi
-fi
-cd ..
-
 %pre
 if [ -e %{_bindir}/acpixtract-acpica ];then
     alternatives --remove acpixtract %{_bindir}/acpixtract-acpica

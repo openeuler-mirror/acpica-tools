@@ -13,6 +13,7 @@ Source2:        COPYING
 Patch0001:      cve-2017-13693.patch
 Patch0002:      cve-2017-13694.patch
 Patch0003:      cve-2017-13695.patch
+Patch0004:      openEuler-harden.patch
 
 BuildRequires:  bison patchutils flex gcc
 Provides:       acpixtract >= 20120913-7 iasl = %{version}-%{release} acpidump >= 20100513-5

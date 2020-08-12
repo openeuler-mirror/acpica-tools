@@ -1,21 +1,7 @@
-Index: acpica-unix2-20180209/generate/unix/Makefile.config
-===================================================================
---- acpica-unix2-20180209.orig/generate/unix/Makefile.config
-+++ acpica-unix2-20180209/generate/unix/Makefile.config
-@@ -182,6 +182,8 @@ ifneq ($(NOFORTIFY),TRUE)
- OPT_CFLAGS += -D_FORTIFY_SOURCE=2
- endif
- 
-+OPT_CFLAGS += -fPIC -pie
-+
- CFLAGS += \
-     -D$(HOST)\
-     -D_GNU_SOURCE\
-Index: acpica-unix2-20180209/generate/unix/iasl/Makefile
-===================================================================
---- acpica-unix2-20180209.orig/generate/unix/iasl/Makefile
-+++ acpica-unix2-20180209/generate/unix/iasl/Makefile
-@@ -344,26 +344,27 @@ $(OBJDIR)/prparserparse.c $(OBJDIR)/prpa
+diff -Naur a/generate/unix/iasl/Makefile b/generate/unix/iasl/Makefile
+--- a/generate/unix/iasl/Makefile	2020-07-23 06:45:14.064000000 +0000
++++ b/generate/unix/iasl/Makefile	2020-07-23 06:57:32.080000000 +0000
+@@ -358,34 +358,35 @@
  # Cannot use the common compile warning flags since the C files are created
  # by the utilities above and they are not necessarily ANSI C, etc.
  #
@@ -26,6 +12,16 @@ Index: acpica-unix2-20180209/generate/unix/iasl/Makefile
 +	@$(CC) -c $(CFLAGS) $(HARDENING_FLAGS) -Wall -Werror -o$@ $<
  
  $(OBJDIR)/aslcompilerparse.o : $(OBJDIR)/aslcompilerparse.c
+ 	@echo "- " "Intermediate" $<
+-	@$(CC) -c $(CFLAGS) -Wall -Werror -o$@ $<
++	@$(CC) -c $(CFLAGS) $(HARDENING_FLAGS) -Wall -Werror -o$@ $<
+ 
+ $(OBJDIR)/dtcompilerparserlex.o :      $(OBJDIR)/dtcompilerparserlex.c
+ 	@echo "- " "Intermediate" $<
+-	@$(CC) -c $(CFLAGS) -Wall -Werror -o$@ $<
++	@$(CC) -c $(CFLAGS) $(HARDENING_FLAGS) -Wall -Werror -o$@ $<
+ 
+ $(OBJDIR)/dtcompilerparserparse.o :    $(OBJDIR)/dtcompilerparserparse.c
  	@echo "- " "Intermediate" $<
 -	@$(CC) -c $(CFLAGS) -Wall -Werror -o$@ $<
 +	@$(CC) -c $(CFLAGS) $(HARDENING_FLAGS) -Wall -Werror -o$@ $<
@@ -49,3 +45,15 @@ Index: acpica-unix2-20180209/generate/unix/iasl/Makefile
  	@echo "- " "Intermediate" $<
 -	@$(CC) -c $(CFLAGS) -Wall -Werror -o$@ $<
 +	@$(CC) -c $(CFLAGS) $(HARDENING_FLAGS) -Wall -Werror -o$@ $<
+diff -Naur a/generate/unix/Makefile.config b/generate/unix/Makefile.config
+--- a/generate/unix/Makefile.config	2020-07-23 06:45:14.065000000 +0000
++++ b/generate/unix/Makefile.config	2020-07-23 06:47:00.436000000 +0000
+@@ -181,6 +181,8 @@
+ OPT_CFLAGS += -D_FORTIFY_SOURCE=2
+ endif
+ 
++OPT_CFLAGS += -fPIC -pie
++
+ CFLAGS += \
+     -D$(ACPI_HOST)\
+     -D_GNU_SOURCE\

@@ -1,6 +1,6 @@
 Name:           acpica-tools
-Version:        20190509
-Release:        4
+Version:        20200528
+Release:        1
 Summary:        Tools for OS-independent reference implementation of ACPI
 
 License:        GPLv2
@@ -85,5 +85,8 @@ fi
 %{_docdir}/*
 
 %changelog
+* Wed Aug 12 2020 xinghe <xinghe1@huawei.com> - 20200528-1
+- update to 20200528
+
 * Tue Dec 31 2019 daiqianwen <daiqianwen@huawei.com> - 20190509-4
 - Package init

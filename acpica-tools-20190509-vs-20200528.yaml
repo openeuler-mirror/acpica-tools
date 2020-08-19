@@ -1,0 +1,9 @@
+name: acpica-tools
+old_version: 20190509
+new_version: 20200528
+interface_differences:
+- type: 'feature'
+  item: 删除AcpiName
+  diff: 新版本已经删除二进制包acpiname，对应命令已经不存在，功能已被AcpiExec取代
+  influence: 功能增强，优化
+remark: '影响小;'

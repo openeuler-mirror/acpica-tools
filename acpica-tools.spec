@@ -1,5 +1,5 @@
 Name:           acpica-tools
-Version:        20200528
+Version:        20210105
 Release:        1
 Summary:        Tools for OS-independent reference implementation of ACPI
 
@@ -85,6 +85,9 @@ fi
 %{_docdir}/*
 
 %changelog
+* Sat Jan 30 2021 xinghe <xinghe1@huawei.com> - 20210105-1
+- Upgrade to version 20210105
+
 * Wed Jul 22 2020 jinzhimin <jinzhimin2@huawei.com> - 20200528-1
 - update to 20200528
 

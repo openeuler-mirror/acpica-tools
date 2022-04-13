@@ -1,5 +1,5 @@
 Name:           acpica-tools
-Version:        20210604
+Version:        20220331
 Release:        1
 Summary:        Tools for OS-independent reference implementation of ACPI
 
@@ -85,6 +85,9 @@ fi
 %{_docdir}/*
 
 %changelog
+* Wed Apr 13 2022 YukariChiba <i@0x7f.cc> - 20220331-1
+- Upgrade version to 20220331
+
 * Wed Dec 30 2021 zhouwenpei <zhouwenpei1@huawei.com> - 20210604-1
 - Upgrade to version 20210604
 

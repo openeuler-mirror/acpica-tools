@@ -14,6 +14,7 @@ Patch0001:      cve-2017-13693.patch
 Patch0002:      cve-2017-13694.patch
 Patch0003:      cve-2017-13695.patch
 Patch0004:      openEuler-harden.patch
+Patch0005:      acpica-unix2-20210604-sw.patch
 
 BuildRequires:  bison patchutils flex gcc
 Provides:       acpixtract >= 20120913-7 iasl = %{version}-%{release} acpidump >= 20100513-5
@@ -85,6 +86,9 @@ fi
 %{_docdir}/*
 
 %changelog
+* Wed Jul 20 2022 wuzx<wuzx1226@qq.com> - 20210604-1
+- add sw64 patch
+
 * Wed Dec 30 2021 zhouwenpei <zhouwenpei1@huawei.com> - 20210604-1
 - Upgrade to version 20210604
 

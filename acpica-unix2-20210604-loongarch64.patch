@@ -1,0 +1,11 @@
+--- acpica-unix2-20210604/source/include/platform/aclinux.h	2022-08-17 16:32:22.742240154 +0800
++++ acpica-unix2-20210604.loongarch64/source/include/platform/aclinux.h	2022-08-17 16:32:08.721935012 +0800
+@@ -215,7 +215,7 @@
+ #define ACPI_CAST_PTHREAD_T(Pthread) ((ACPI_THREAD_ID) (Pthread))
+ 
+ #if defined(__ia64__)    || (defined(__x86_64__) && !defined(__ILP32__)) ||\
+-    defined(__aarch64__) || defined(__sw_64__) || defined(__PPC64__) ||\
++    defined(__aarch64__) || defined(__sw_64__) || defined(__PPC64__) || defined(__loongarch__)||\
+     defined(__s390x__) ||\
+     (defined(__riscv) && (defined(__LP64__) || defined(_LP64)))
+ #define ACPI_MACHINE_WIDTH          64

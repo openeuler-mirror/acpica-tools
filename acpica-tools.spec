@@ -1,6 +1,6 @@
 Name:           acpica-tools
 Version:        20210604
-Release:        2
+Release:        3
 Summary:        Tools for OS-independent reference implementation of ACPI
 
 License:        GPLv2
@@ -15,6 +15,7 @@ Patch0002:      cve-2017-13694.patch
 Patch0003:      cve-2017-13695.patch
 Patch0004:      openEuler-harden.patch
 Patch0005:      acpica-unix2-20210604-sw.patch
+Patch0006:	acpica-unix2-20210604-loongarch64.patch
 
 BuildRequires:  bison patchutils flex gcc
 Provides:       acpixtract >= 20120913-7 iasl = %{version}-%{release} acpidump >= 20100513-5
@@ -86,6 +87,9 @@ fi
 %{_docdir}/*
 
 %changelog
+* Wed Aug 17 2022 mahailiang <mahailiang@uniontech.com> - 20210604-3
+- add loongarch64 support
+
 * Wed Jul 20 2022 wuzx<wuzx1226@qq.com> - 20210604-2
 - add sw64 patch
 

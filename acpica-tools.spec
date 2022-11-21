@@ -1,12 +1,12 @@
 Name:           acpica-tools
 Version:        20210604
-Release:        2
+Release:        3
 Summary:        Tools for OS-independent reference implementation of ACPI
 
 License:        GPLv2
 URL:            https://www.acpica.org/
 
-Source0:        https://acpica.org/sites/acpica/files/acpica-unix2-%{version}.tar.gz
+Source0:        https://acpica.org/sites/acpica/files/acpica-unix2-%{version}.tar_0.gz
 Source1:        https://acpica.org/sites/acpica/files/acpitests-unix-%{version}.tar.gz
 Source2:        COPYING
 
@@ -86,6 +86,9 @@ fi
 %{_docdir}/*
 
 %changelog
+* Mon Nov 21 2022 fanrui <fary.fanrui@huawei.com> - 20210604-3
+- Fix SOURCE0 in spec file can not be downloaded
+
 * Wed Jul 20 2022 wuzx<wuzx1226@qq.com> - 20210604-2
 - add sw64 patch
 

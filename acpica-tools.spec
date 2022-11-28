@@ -1,6 +1,6 @@
 Name:           acpica-tools
 Version:        20210604
-Release:        3
+Release:        4
 Summary:        Tools for OS-independent reference implementation of ACPI
 
 License:        GPLv2
@@ -10,11 +10,11 @@ Source0:        https://acpica.org/sites/acpica/files/acpica-unix2-%{version}.ta
 Source1:        https://acpica.org/sites/acpica/files/acpitests-unix-%{version}.tar.gz
 Source2:        COPYING
 
-Patch0001:      cve-2017-13693.patch
-Patch0002:      cve-2017-13694.patch
-Patch0003:      cve-2017-13695.patch
-Patch0004:      openEuler-harden.patch
-Patch0005:      acpica-unix2-20210604-sw.patch
+Patch0001:      0001-cve-2017-13693.patch
+Patch0002:      0002-cve-2017-13694.patch
+Patch0003:      0003-cve-2017-13695.patch
+Patch0004:      0004-enable-harden.patch
+Patch0005:      0005-acpica-unix2-20210604-sw.patch
 
 BuildRequires:  bison patchutils flex gcc
 Provides:       acpixtract >= 20120913-7 iasl = %{version}-%{release} acpidump >= 20100513-5
@@ -86,6 +86,9 @@ fi
 %{_docdir}/*
 
 %changelog
+* Mon Nov 28 2022 Weifeng Su <suweifeng1@huawei.com> 20210604-4
+- rename patches
+
 * Mon Nov 21 2022 fanrui <fary.fanrui@huawei.com> - 20210604-3
 - Fix SOURCE0 in spec file can not be downloaded
 

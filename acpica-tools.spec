@@ -1,6 +1,6 @@
 Name:           acpica-tools
 Version:        20210604
-Release:        1
+Release:        2
 Summary:        Tools for OS-independent reference implementation of ACPI
 
 License:        GPLv2
@@ -42,6 +42,16 @@ chmod a-x changes.txt
 chmod a-x source/compiler/new_table.txt
 
 %build
+%if "%toolchain" == "clang"
+CWARNINGFLAGS="\
+    -std=c99 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Wformat=2\
+    -Wmissing-declarations -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes\
+    -Wswitch-default -Wpointer-arith -Wundef -Waddress -Waggregate-return -Winit-self\
+    -Winline -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs\
+    -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body\
+    -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration\
+    -Wtype-limits"
+%else
 CWARNINGFLAGS="\
     -std=c99 -Wall -Wbad-function-cast -Wdeclaration-after-statement -Werror -Wformat=2\
     -Wmissing-declarations -Wmissing-prototypes -Wstrict-aliasing=0 -Wstrict-prototypes\
@@ -50,7 +60,7 @@ CWARNINGFLAGS="\
     -Wold-style-definition -Wno-format-nonliteral -Wredundant-decls -Wempty-body\
     -Woverride-init -Wlogical-op -Wmissing-parameter-type -Wold-style-declaration\
     -Wtype-limits"
-
+%endif
 export OPT_CFLAGS="%{optflags} $CWARNINGFLAGS"
 export OPT_LDFLAGS="%{__global_ldflags}"
 
@@ -85,6 +95,9 @@ fi
 %{_docdir}/*
 
 %changelog
+* Sta May 6 2023 Xiang Zhang <zhangxiang@iscas.ac.cn>
+- Fix CC compiler support
+
 * Wed Dec 30 2021 zhouwenpei <zhouwenpei1@huawei.com> - 20210604-1
 - Upgrade to version 20210604
 

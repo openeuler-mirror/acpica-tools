@@ -1,11 +1,15 @@
 diff -Naur a/generate/unix/iasl/Makefile b/generate/unix/iasl/Makefile
 --- a/generate/unix/iasl/Makefile	2020-07-23 06:45:14.064000000 +0000
 +++ b/generate/unix/iasl/Makefile	2020-07-23 06:57:32.080000000 +0000
-@@ -358,34 +358,35 @@
+@@ -358,34 +358,39 @@
  # Cannot use the common compile warning flags since the C files are created
  # by the utilities above and they are not necessarily ANSI C, etc.
  #
++ifeq ($(CC),clang)
++HARDENING_FLAGS = -fPIC
++else
 +HARDENING_FLAGS = -fPIC -pie
++endif
  $(OBJDIR)/aslcompilerlex.o :   $(OBJDIR)/aslcompilerlex.c
  	@echo "- " "Intermediate" $<
 -	@$(CC) -c $(CFLAGS) -Wall -Werror -o$@ $<
